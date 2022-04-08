@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block main %}
+<script>
+    var counter = 0
+    let imageObjectArray = []
+    let currentImage = ""
+    {% for entry in imageList %}
+        currentImage = {img: "{{entry.view}}",
+                        raw: "{{entry.raw}}",
+                        process: false};
+        imageObjectArray.push(currentImage);
+    {% endfor %}
+    function change(ev){
+        if (ev.key == "y") {
+            process();
+            next();
+        }
+        if (ev.key == "n" || ev.key == "ArrowRight") {
+            next();
+        }
+        if (ev.key == "ArrowLeft") {
+            prev();
+        }
+        if (ev.key == "Enter") {
+            send();
+        }
+        document.getElementById("img").src = "/input/" + imageObjectArray[counter].img;
+    }
+
+    function next(){
+        if (counter >= imageObjectArray.length - 1) {
+            counter = 0;
+        }
+        else {
+            counter += 1;
+        }
+        check();
+    }
+
+    function prev(){
+        if (counter <= 0) {
+            counter = imageObjectArray.length - 1;
+        }
+        else {
+            counter -= 1;
+        }
+        check();
+    }
+
+    function process(image){
+        imageObjectArray[counter].process = true;
+    }
+
+    function check(){
+        if (imageObjectArray[counter].process === true) {
+            document.getElementById("status").style.backgroundColor = "green";
+        }
+        else {
+            document.getElementById("status").style.backgroundColor = "red";
+        }
+    }
+
+    async function send(){
+        let imagesToSend = {};
+        let objCounter = 0;
+        for (let i = 0; i < imageObjectArray.length; i++) {
+            if (imageObjectArray[i].process == true) {
+                imagesToSend[objCounter] = imageObjectArray[i];
+                objCounter += 1;
+            }
+        }
+        imagesToSend = JSON.stringify(imagesToSend);
+        console.log(imagesToSend);
+        let response = await fetch("/send?obj="+imagesToSend);
+    }
+</script>
+<body onkeydown="change(event)">
+    <img src="/input/{{ imageList[0].view }}" id="img"/>
+    <div id="status"></div>
+</body>
+{% endblock %}

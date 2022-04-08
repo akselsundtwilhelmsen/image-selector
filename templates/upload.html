@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block main %}
+<body id="uploadprompt">
+    <div id="instructions">
+    <p>Put images to go through in the /input/ folder.</p>
+    <p>Copied images end up in the /output/ folder.</p>
+    <p><span class="green">Green box</span> indicates that the image will be copied.</p>
+    <p><span class="red">Red box</span> indicates that the image will not be copied.</p>
+    </div>
+    <form action="#" method="POST">
+        <label for="viewtype">File type to view: (Case sensitive)</label>
+        <input type="text" id="viewtype" name="viewtype"><br>
+        <label for="rawtype">Raw file type: (Case sensitive)</label>
+        <input type="text" id="rawtype" name="rawtype"><br>
+        <input type="submit" value="Submit"><br>
+        {% if error %}
+            <p>Not directories</p>
+        {% endif %}
+    </form>
+</body>
+{% endblock %}

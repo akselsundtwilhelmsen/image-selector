@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SD-unloader</title>
+    <style>
+        html, body {
+            margin: 0px;
+            padding: 0px;
+            background-color: #202124;
+            overflow: hidden;
+            font-family: monospace;
+            justify-content: center;
+            color: white;
+        }
+        #uploadprompt {
+            margin: auto;
+            width: 30%;
+            box-sizing: border-box;
+        }
+        #instructions {
+            text-align: center;
+        }
+        fieldset label {
+            display: inline-block;
+            clear: left;
+            text-align: right;
+        }
+        form input {
+            display: inline-block;
+            clear: left;
+            width: 100%;
+            text-align: left;
+        }
+        fieldset {
+            border: none;
+        }
+        img {
+            width: 100vw;
+            height: 100vh;
+            object-fit: scale-down;
+        }
+        #status {
+            background-color: red;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            height: 20px;
+            width: 20px;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+    {% block main %}
+    {% endblock %}
+</html>                                                                    
+
+
