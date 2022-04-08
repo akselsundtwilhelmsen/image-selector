@@ -5,3 +5,4 @@ Put the images in the /input/ folder, the selected ones will be *copied* to /out
 
 ## Usage
 Start the web server by running selector.py, then open "/templates/selector.html" with a browser.
+
