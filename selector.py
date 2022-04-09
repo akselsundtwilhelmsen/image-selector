@@ -39,6 +39,7 @@ def copy(imagesToCopy):
             copy2(f"{inputDir}{r}", f"{outputDir}{r}")
     pass
 
+
 @app.route("/", methods=["GET", "POST"])
 def upload():
     error = False
