@@ -2,10 +2,12 @@
 {% block main %}
 <body id="uploadprompt">
     <div id="instructions">
-    <p>Put images to go through in the /input/ folder.</p>
-    <p>Copied images end up in the /output/ folder.</p>
+    <p>Put images to go through in the input/ folder.</p>
+    <p>Copied images end up in the output/ folder.</p>
+    <p>Images can be scrolled through with left and right arrow. Press Y/N to determine if the currently viewed image will be copied.</p>
     <p><span class="green">Green box</span> indicates that the image will be copied.</p>
     <p><span class="red">Red box</span> indicates that the image will not be copied.</p>
+    <p>Enter/Return will perform the copy operation.</p>
     </div>
     <form action="#" method="POST">
         <label for="viewtype">File type to view: (Case sensitive)</label>
