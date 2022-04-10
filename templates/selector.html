@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block main %}
 <script>
-    var counter = 0
+    var index = 0
     let imageObjectArray = []
     let currentImage = ""
     {% for entry in imageList %}
@@ -10,6 +10,8 @@
                         process: false};
         imageObjectArray.push(currentImage);
     {% endfor %}
+    document.getElementById("status").innerText = `${index}/${imageObjectArray.length}`;
+
     function change(ev){
         if (ev.key == "y") {
             process();
@@ -24,40 +26,41 @@
         if (ev.key == "Enter") {
             send();
         }
-        document.getElementById("img").src = "/input/" + imageObjectArray[counter].img;
+        document.getElementById("img").src = "/input/" + imageObjectArray[index].img;
     }
 
     function next(){
-        if (counter >= imageObjectArray.length - 1) {
-            counter = 0;
+        if (index >= imageObjectArray.length - 1) {
+            index = 0;
         }
         else {
-            counter += 1;
+            index += 1;
         }
         check();
     }
 
     function prev(){
-        if (counter <= 0) {
-            counter = imageObjectArray.length - 1;
+        if (index <= 0) {
+            index = imageObjectArray.length - 1;
         }
         else {
-            counter -= 1;
+            index -= 1;
         }
         check();
     }
 
     function process(image){
-        imageObjectArray[counter].process = true;
+        imageObjectArray[index].process = true;
     }
 
     function check(){
-        if (imageObjectArray[counter].process === true) {
+        if (imageObjectArray[index].process === true) {
             document.getElementById("status").style.backgroundColor = "green";
         }
         else {
             document.getElementById("status").style.backgroundColor = "red";
         }
+        document.getElementById("status").innerText = `${index+1}/${imageObjectArray.length}`;
     }
 
     async function send(){
@@ -74,7 +77,7 @@
         let response = await fetch("/send?obj="+imagesToSend);
     }
 </script>
-<body onkeydown="change(event)">
+<body onkeydown="change(event)" onload="check()">
     <img src="/input/{{ imageList[0].view }}" id="img"/>
     <div id="status"></div>
 </body>

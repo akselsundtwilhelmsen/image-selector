@@ -42,19 +42,16 @@ def copy(imagesToCopy):
 
 @app.route("/", methods=["GET", "POST"])
 def upload():
-    error = False
     if request.method == "POST":
-        try:
-            global viewType
-            viewType = request.form.get("viewtype")
-            global rawType
-            rawType = request.form.get("rawtype")
-            global inputImages
-            inputImages = listdir(inputDir)
-            return redirect(url_for("selector"))
-        except:
-            error = True
-    return render_template("upload.html", error=error)
+        global viewType
+        viewType = request.form.get("viewtype")
+        global rawType
+        rawType = request.form.get("rawtype")
+        global inputImages
+        inputImages = listdir(inputDir)
+        inputImages.sort()
+        return redirect(url_for("selector"))
+    return render_template("upload.html")
 
 
 @app.route("/selector", methods=["GET", "POST"])
