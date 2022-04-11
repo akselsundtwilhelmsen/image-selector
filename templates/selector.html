@@ -14,10 +14,14 @@
 
     function change(ev){
         if (ev.key == "y") {
-            process();
+            process(true);
             next();
         }
-        if (ev.key == "n" || ev.key == "ArrowRight") {
+        if (ev.key == "n") {
+            process(false);
+            next();
+        }
+        if (ev.key == "ArrowRight") {
             next();
         }
         if (ev.key == "ArrowLeft") {
@@ -49,8 +53,8 @@
         check();
     }
 
-    function process(image){
-        imageObjectArray[index].process = true;
+    function process(bool){
+        imageObjectArray[index].process = bool;
     }
 
     function check(){
