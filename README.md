@@ -4,5 +4,4 @@ Created to help with the problem of being trigger happy with a digital camera.
 Put the images in the input/ folder, the selected ones will be *copied* to output/.
 
 ## Usage
-Start the web server by running selector.py, then open "/templates/selector.html" with a browser.
-
+Start the web server by running selector.py, then go to "localhost:5000" in your web browser.
