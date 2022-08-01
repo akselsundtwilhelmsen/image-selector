@@ -35,7 +35,7 @@ def copy(imagesToCopy):
         global inputDir
         global outputDir
         copy2(f"{inputDir}{v}", f"{outputDir}{v}")
-        if v != None:
+        if r != None:
             copy2(f"{inputDir}{r}", f"{outputDir}{r}")
     pass
 
